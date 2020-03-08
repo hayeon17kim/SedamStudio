@@ -1,0 +1,109 @@
+body {
+    background-color: #000;
+}
+
+/* z-index : the web page can be viewed by three dimensional. x, y  and z.
+z-index: 1 => it's comming forward towords us
+in order to use z-index, we need to change position into `relative` (default: static => ignore z index)
+*/
+#landing-header {
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    padding-top: 40vh;
+}
+/* 
+centering text
+    - `text-align: center` => vertically center
+    - `padding-top: 40vh => vh(view height) (50vh will push down the content)
+*/
+
+#landing-header h1{
+    color: #fff;
+}
+
+.slideshow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    /* this will make sure that the background images are behind the other content */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slideshow li {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover; 
+    /* image take up entire page */
+    background-position: 50% 50%;
+    /* this will center the image perfectly the page */
+    background-repeat: no-repeat;
+    /* image is not gonna repeat vertically or horizontly */
+    opacity: 0;
+    z-index: 0;
+    /* set image back of both text and button */
+    animation: imageAnimation 50s linear infinite;
+    /* image change at same speed from beginning to end*/
+    /* loop infinite : slideshow never ends */
+}
+
+.slideshow li:nth-child(1) {
+    background-image: url("/img/1.jpg");
+}
+.slideshow li:nth-child(2) {
+    background-image: url("/img/2.jpg");
+    animation-delay: 10s;
+}
+.slideshow li:nth-child(3) {
+    background-image: url("/img/3.jpg");
+    animation-delay: 20s;
+}
+.slideshow li:nth-child(4) {
+    background-image: url("/img/4.jpg");
+    animation-delay: 30s;
+}
+.slideshow li:nth-child(5) {
+    background-image: url("/img/5.jpg");
+    animation-delay: 40s;
+}
+
+/*
+- giving the animation the name of image animation.
+- start from 0 and fade-in
+*/
+
+@keyframes imageAnimation {
+    0% {
+        opacity: 0;
+        animation-timing-funtion: ease-in;
+    }
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-out;
+    }
+    20% {
+        opacity: 1
+    }
+    30% {
+        opacity: 0
+    }
+}
+
+/* older browser support - .no-cssanimations class aded by modernizr */
+.no-cssanimations .sildeshow li {
+    opacity: 1
+}
+
+.btn {
+    border-width: 3px;
+    border-radius: 0;
+    font-weight: bold;
+}
